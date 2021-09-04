@@ -1,9 +1,18 @@
 package com.betha.cotacoescloud.cotacoescloud.model;
 
+import javax.persistence.*;
+
+@MappedSuperclass
 public abstract class AbstractPessoa {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(name = "NOME")
     private String nome;
+    @Column(name = "ENDERECO")
     private String endereco;
+    @Column(name = "TELEFONE")
     private String telefone;
 
     public AbstractPessoa(Long id, String nome, String cpf, String endereco, String telefone) {
