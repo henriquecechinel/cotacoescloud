@@ -1,25 +1,25 @@
 package com.betha.cotacoescloud.cotacoescloud.model;
 
-public abstract class AbstractPessoa {
-    private Long id;
+import com.betha.cotacoescloud.cotacoescloud.enterprise.AbstractEntity;
+
+import javax.persistence.*;
+
+@MappedSuperclass
+public abstract class AbstractPessoa extends AbstractEntity {
+    @Column(name = "NOME")
     private String nome;
+    @Column(name = "ENDERECO")
     private String endereco;
+    @Column(name = "TELEFONE")
     private String telefone;
 
-    public AbstractPessoa(Long id, String nome, String cpf, String endereco, String telefone) {
-        this.id = id;
+    public AbstractPessoa(String nome, String endereco, String telefone) {
         this.nome = nome;
         this.endereco = endereco;
         this.telefone = telefone;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public AbstractPessoa() {}
 
     public String getNome() {
         return nome;
@@ -48,10 +48,9 @@ public abstract class AbstractPessoa {
     @Override
     public String toString() {
         return "AbstractPessoa{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
+                "nome='" + nome + '\'' +
                 ", endereco='" + endereco + '\'' +
                 ", telefone='" + telefone + '\'' +
-                '}';
+                "} " + super.toString();
     }
 }
