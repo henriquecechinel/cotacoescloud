@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
+import com.betha.cotacoescloud.cotacoescloud.enterprise.ValidationException;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +22,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/funcionarios")
-public class FuncionarioController {
+public class FuncionarioController extends AbstractResource{
 
     @Autowired
     private FuncionarioRepository repository;
@@ -36,9 +41,24 @@ public class FuncionarioController {
     }
 
     @PostMapping
-    public FuncionarioDTO create(@Valid @RequestBody Funcionario funcionario){
+    public FuncionarioDTO create(@Valid @RequestBody Funcionario funcionario) throws ValidationException, ParseException {
 
+        List<Funcionario> byDocumento = repository.findByDocumento(funcionario.getDocumento());
 
+        Date today = new Date();
+
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        Date dataFormatada = formato.parse(funcionario.getDataNascimento());
+
+        int diferenca = today.getYear() - dataFormatada.getYear();
+
+        if(diferenca < 21){
+            throw new ValidationException("Idade do funcionario menor que 21 anos!");
+        }
+
+        if(!byDocumento.isEmpty()){
+            throw new ValidationException("Já existe um Funcionário com o mesmo Documento registrado!");
+        }
 
         return FuncionarioDTO.toDTO(repository.save(funcionario));
     }

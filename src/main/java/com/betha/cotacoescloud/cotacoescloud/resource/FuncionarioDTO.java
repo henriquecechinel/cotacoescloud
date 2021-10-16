@@ -10,7 +10,7 @@ public class FuncionarioDTO {
 
     private Long id;
     private String nome;
-    private Date dataNascimento;
+    private String dataNascimento;
     private String documento;
     private TipoDocumento tipoDocumento;
     private Endereco i_endereco;
@@ -35,11 +35,11 @@ public class FuncionarioDTO {
         this.nome = nome;
     }
 
-    public Date getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 

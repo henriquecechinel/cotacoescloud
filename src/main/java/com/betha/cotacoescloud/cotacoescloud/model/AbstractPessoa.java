@@ -4,6 +4,7 @@ import com.betha.cotacoescloud.cotacoescloud.enterprise.AbstractEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.Date;
 
 @MappedSuperclass
@@ -12,7 +13,7 @@ public abstract class AbstractPessoa extends AbstractEntity {
     @Column(name = "NOME")
     private String nome;
     @Column(name = "DATA_NASCIMENTO")
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
     @NotNull(message = "O campo Documento é obrigatório!")
     @Column(name = "DOCUMENTO")
     private String documento;
@@ -27,7 +28,7 @@ public abstract class AbstractPessoa extends AbstractEntity {
     @Column(name = "EMAIL")
     private String email;
 
-    public AbstractPessoa(String nome, Date dataNascimento, String documento, TipoDocumento tipoDocumento, Endereco i_endereco, String telefone, String email) {
+    public AbstractPessoa(String nome, String dataNascimento, String documento, TipoDocumento tipoDocumento, Endereco i_endereco, String telefone, String email) {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.documento = documento;
@@ -47,11 +48,11 @@ public abstract class AbstractPessoa extends AbstractEntity {
         this.nome = nome;
     }
 
-    public Date getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
