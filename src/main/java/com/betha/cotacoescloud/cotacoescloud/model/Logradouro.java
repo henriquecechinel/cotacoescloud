@@ -5,10 +5,12 @@ import com.betha.cotacoescloud.cotacoescloud.enterprise.AbstractRegiao;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Logradouro extends AbstractRegiao {
     @ManyToOne
+    @NotNull
     @JoinColumn(name = "I_BAIRRO", referencedColumnName = "ID")
     private Bairro i_bairro;
 
@@ -16,6 +18,8 @@ public class Logradouro extends AbstractRegiao {
         super(nome, populacao);
         this.i_bairro = i_bairro;
     }
+
+    public Logradouro(){}
 
     public Bairro getI_bairro() {
         return i_bairro;

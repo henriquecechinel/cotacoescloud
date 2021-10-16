@@ -5,9 +5,11 @@ import com.betha.cotacoescloud.cotacoescloud.enterprise.AbstractRegiao;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Estado extends AbstractRegiao {
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "I_PAIS", referencedColumnName = "ID")
     private Pais i_pais;
@@ -16,6 +18,8 @@ public class Estado extends AbstractRegiao {
         super(nome, populacao);
         this.i_pais = i_pais;
     }
+
+    public Estado(){}
 
     public Pais getI_pais() {
         return i_pais;

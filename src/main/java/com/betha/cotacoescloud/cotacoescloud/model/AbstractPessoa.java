@@ -3,20 +3,38 @@ package com.betha.cotacoescloud.cotacoescloud.model;
 import com.betha.cotacoescloud.cotacoescloud.enterprise.AbstractEntity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @MappedSuperclass
 public abstract class AbstractPessoa extends AbstractEntity {
+    @NotNull(message = "O campo Nome é obrigatório!")
     @Column(name = "NOME")
     private String nome;
-    @Column(name = "ENDERECO")
-    private String endereco;
+    @Column(name = "DATA_NASCIMENTO")
+    private Date dataNascimento;
+    @NotNull(message = "O campo Documento é obrigatório!")
+    @Column(name = "DOCUMENTO")
+    private String documento;
+    @NotNull(message = "O campo Tipo de Documento é obrigatório!")
+    @Column(name = "TIPO_DOCUMENTO")
+    private TipoDocumento tipoDocumento;
+    @ManyToOne
+    @JoinColumn(name = "I_ENDERECO", referencedColumnName = "ID")
+    private Endereco i_endereco;
     @Column(name = "TELEFONE")
     private String telefone;
+    @Column(name = "EMAIL")
+    private String email;
 
-    public AbstractPessoa(String nome, String endereco, String telefone) {
+    public AbstractPessoa(String nome, Date dataNascimento, String documento, TipoDocumento tipoDocumento, Endereco i_endereco, String telefone, String email) {
         this.nome = nome;
-        this.endereco = endereco;
+        this.dataNascimento = dataNascimento;
+        this.documento = documento;
+        this.tipoDocumento = tipoDocumento;
+        this.i_endereco = i_endereco;
         this.telefone = telefone;
+        this.email = email;
     }
 
     public AbstractPessoa() {}
@@ -29,12 +47,36 @@ public abstract class AbstractPessoa extends AbstractEntity {
         this.nome = nome;
     }
 
-    public String getEndereco() {
-        return endereco;
+    public Date getDataNascimento() {
+        return dataNascimento;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(String documento) {
+        this.documento = documento;
+    }
+
+    public TipoDocumento getTipoDocumento() {
+        return tipoDocumento;
+    }
+
+    public void setTipoDocumento(TipoDocumento tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
+    }
+
+    public Endereco getI_endereco() {
+        return i_endereco;
+    }
+
+    public void setI_endereco(Endereco i_endereco) {
+        this.i_endereco = i_endereco;
     }
 
     public String getTelefone() {
@@ -45,12 +87,24 @@ public abstract class AbstractPessoa extends AbstractEntity {
         this.telefone = telefone;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
         return "AbstractPessoa{" +
                 "nome='" + nome + '\'' +
-                ", endereco='" + endereco + '\'' +
+                ", dataNascimento=" + dataNascimento +
+                ", documento='" + documento + '\'' +
+                ", tipoDocumento='" + tipoDocumento + '\'' +
+                ", i_endereco=" + i_endereco +
                 ", telefone='" + telefone + '\'' +
+                ", email='" + email + '\'' +
                 "} " + super.toString();
     }
 }
