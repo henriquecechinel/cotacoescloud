@@ -19,7 +19,56 @@ public class ItensLicitacao {
     private BigDecimal valorTotal;
     @ManyToOne
     @NotNull
-    @JoinColumn(name = "", referencedColumnName = "ID")
-    private Material i_material;
+    @JoinColumn(name = "I_MATERIAL", referencedColumnName = "ID")
+    private Material material;
 
+    public ItensLicitacao(Long numeroItem, Long quantidade, BigDecimal valorUnitario, BigDecimal valorTotal, Material material) {
+        this.numeroItem = numeroItem;
+        this.quantidade = quantidade;
+        this.valorUnitario = valorUnitario;
+        this.valorTotal = valorTotal;
+        this.material = material;
+    }
+
+    public ItensLicitacao (){}
+
+    public Long getNumeroItem() {
+        return numeroItem;
+    }
+
+    public void setNumeroItem(Long numeroItem) {
+        this.numeroItem = numeroItem;
+    }
+
+    public Long getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Long quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public BigDecimal getValorUnitario() {
+        return valorUnitario;
+    }
+
+    public void setValorUnitario(BigDecimal valorUnitario) {
+        this.valorUnitario = valorUnitario;
+    }
+
+    public BigDecimal getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(BigDecimal valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+    public Material getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(Material material) {
+        this.material = material;
+    }
 }
