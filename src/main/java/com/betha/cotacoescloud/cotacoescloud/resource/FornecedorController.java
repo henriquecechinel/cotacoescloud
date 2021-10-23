@@ -2,8 +2,6 @@ package com.betha.cotacoescloud.cotacoescloud.resource;
 
 import com.betha.cotacoescloud.cotacoescloud.enterprise.ValidationException;
 import com.betha.cotacoescloud.cotacoescloud.model.Fornecedor;
-import com.betha.cotacoescloud.cotacoescloud.model.Fornecedor;
-import com.betha.cotacoescloud.cotacoescloud.model.Fornecedor;
 import com.betha.cotacoescloud.cotacoescloud.repository.FornecedorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -41,23 +39,11 @@ public class FornecedorController extends AbstractResource {
 
         List<Fornecedor> byDocumento = repository.findByDocumento(fornecedor.getDocumento());
 
-        Date today = new Date();
-
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        Date dataFormatada = formato.parse(fornecedor.getDataNascimento());
-
-        int diferenca = today.getYear() - dataFormatada.getYear();
-
-        if (diferenca < 21) {
-            throw new ValidationException("Idade do fornecedor menor que 21 anos!");
-        }
-
         if (!byDocumento.isEmpty()) {
             throw new ValidationException("Já existe um Fornecedor com o mesmo Documento registrado!");
         }
 
         return FornecedorDTO.toDTO(repository.save(fornecedor));
-
     }
 
     @PutMapping("/{id}")
@@ -70,7 +56,7 @@ public class FornecedorController extends AbstractResource {
         fornecedorFind.setDataNascimento(fornecedor.getDataNascimento());
         fornecedorFind.setDocumento(fornecedor.getDocumento());
         fornecedorFind.setTipoDocumento(fornecedor.getTipoDocumento());
-        fornecedorFind.setI_endereco(fornecedor.getI_endereco());
+        fornecedorFind.setEndereco(fornecedor.getEndereco());
         fornecedorFind.setTelefone(fornecedor.getTelefone());
         fornecedorFind.setEmail(fornecedor.getEmail());
         fornecedorFind.setNomeRepresentante(fornecedor.getNomeRepresentante());
@@ -79,6 +65,4 @@ public class FornecedorController extends AbstractResource {
 
         return FornecedorDTO.toDTO(repository.save(fornecedorFind));
     }
-
-
 }

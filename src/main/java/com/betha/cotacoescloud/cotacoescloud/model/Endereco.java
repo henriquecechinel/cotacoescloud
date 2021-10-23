@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 public class Endereco extends AbstractEntity {
     @ManyToOne
     @JoinColumn(name = "I_LOGRADOURO", referencedColumnName = "ID")
-    private Logradouro i_logradouro;
+    private Logradouro logradouro;
     @Column(name = "CEP")
     private String cep;
     @Column(name = "NUMERO")
@@ -19,19 +19,19 @@ public class Endereco extends AbstractEntity {
     @Column(name = "COMPLEMENTO")
     private String complemento;
 
-    public Endereco(Logradouro i_logradouro, String cep, Long numero, String complemento) {
-        this.i_logradouro = i_logradouro;
+    public Endereco(Logradouro logradouro, String cep, Long numero, String complemento) {
+        this.logradouro = logradouro;
         this.cep = cep;
         this.numero = numero;
         this.complemento = complemento;
     }
 
-    public Logradouro getI_logradouro() {
-        return i_logradouro;
+    public Logradouro getLogradouro() {
+        return logradouro;
     }
 
-    public void setI_logradouro(Logradouro i_logradouro) {
-        this.i_logradouro = i_logradouro;
+    public void setLogradouro(Logradouro logradouro) {
+        this.logradouro = logradouro;
     }
 
     public String getCep() {

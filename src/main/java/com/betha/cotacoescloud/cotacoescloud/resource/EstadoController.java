@@ -44,10 +44,10 @@ public class EstadoController {
     @PostMapping
     public EstadoDTO create(@Valid @RequestBody Estado estado){
 
-        Optional<Pais> byId = paisRepository.findById(estado.getI_pais().getId());
+        Optional<Pais> byId = paisRepository.findById(estado.getPais().getId());
 
         if (!byId.isPresent()){
-            throw new EntityNotFoundException("Pais não encontrado com ID: " + estado.getI_pais().getId());
+            throw new EntityNotFoundException("Pais não encontrado com ID: " + estado.getPais().getId());
         }
 
         return EstadoDTO.toDTO(repository.save(estado));
@@ -73,18 +73,4 @@ public class EstadoController {
 
         return EstadoDTO.toDTO(repository.save(estadoFind));
     }
-
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public Map<String, String> handleValidationExceptions(
-            MethodArgumentNotValidException ex) {
-        Map<String, String> errors = new HashMap<>();
-        ex.getBindingResult().getAllErrors().forEach((error) -> {
-            String fieldName = ((FieldError) error).getField();
-            String errorMessage = error.getDefaultMessage();
-            errors.put(fieldName, errorMessage);
-        });
-        return errors;
-    }
-
 }

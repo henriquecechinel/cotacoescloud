@@ -45,17 +45,6 @@ public class FuncionarioController extends AbstractResource{
 
         List<Funcionario> byDocumento = repository.findByDocumento(funcionario.getDocumento());
 
-        Date today = new Date();
-
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        Date dataFormatada = formato.parse(funcionario.getDataNascimento());
-
-        int diferenca = today.getYear() - dataFormatada.getYear();
-
-        if(diferenca < 21){
-            throw new ValidationException("Idade do funcionario menor que 21 anos!");
-        }
-
         if(!byDocumento.isEmpty()){
             throw new ValidationException("Já existe um Funcionário com o mesmo Documento registrado!");
         }
@@ -82,7 +71,7 @@ public class FuncionarioController extends AbstractResource{
         funcionarioFind.setDataNascimento(funcionario.getDataNascimento());
         funcionarioFind.setDocumento(funcionario.getDocumento());
         funcionarioFind.setTipoDocumento(funcionario.getTipoDocumento());
-        funcionarioFind.setI_endereco(funcionario.getI_endereco());
+        funcionarioFind.setEndereco(funcionario.getEndereco());
         funcionarioFind.setTelefone(funcionario.getTelefone());
         funcionarioFind.setEmail(funcionario.getEmail());
         funcionarioFind.setCargo(funcionario.getCargo());

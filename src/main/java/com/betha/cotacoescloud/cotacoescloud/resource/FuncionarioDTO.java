@@ -4,13 +4,13 @@ import com.betha.cotacoescloud.cotacoescloud.model.Endereco;
 import com.betha.cotacoescloud.cotacoescloud.model.Funcionario;
 import com.betha.cotacoescloud.cotacoescloud.model.TipoDocumento;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class FuncionarioDTO {
 
     private Long id;
     private String nome;
-    private String dataNascimento;
+    private LocalDate dataNascimento;
     private String documento;
     private TipoDocumento tipoDocumento;
     private Endereco i_endereco;
@@ -35,11 +35,11 @@ public class FuncionarioDTO {
         this.nome = nome;
     }
 
-    public String getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(String dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
@@ -107,7 +107,7 @@ public class FuncionarioDTO {
         dto.setDataNascimento(funcionario.getDataNascimento());
         dto.setDocumento(funcionario.getDocumento());
         dto.setTipoDocumento(funcionario.getTipoDocumento());
-        dto.setI_endereco(funcionario.getI_endereco());
+        dto.setI_endereco(funcionario.getEndereco());
         dto.setTelefone(funcionario.getTelefone());
         dto.setEmail(funcionario.getEmail());
         dto.setCargo(funcionario.getCargo());
@@ -123,7 +123,7 @@ public class FuncionarioDTO {
         funcionario.setDataNascimento(dto.getDataNascimento());
         funcionario.setDocumento(dto.getDocumento());
         funcionario.setTipoDocumento(dto.getTipoDocumento());
-        funcionario.setI_endereco(dto.getI_endereco());
+        funcionario.setEndereco(dto.getI_endereco());
         funcionario.setTelefone(dto.getTelefone());
         funcionario.setEmail(dto.getEmail());
         funcionario.setCargo(dto.getCargo());
