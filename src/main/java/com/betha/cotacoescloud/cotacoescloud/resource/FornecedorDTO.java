@@ -5,15 +5,16 @@ import com.betha.cotacoescloud.cotacoescloud.model.Fornecedor;
 import com.betha.cotacoescloud.cotacoescloud.model.Porte;
 import com.betha.cotacoescloud.cotacoescloud.model.TipoDocumento;
 
-public class FornecedorDTO {
+import java.time.LocalDate;
 
+public class FornecedorDTO {
 
     private Long id;
     private String nome;
-    private String dataNascimento;
+    private LocalDate dataNascimento;
     private String documento;
     private TipoDocumento tipoDocumento;
-    private Endereco i_endereco;
+    private Endereco endereco;
     private String telefone;
     private String email;
     private String nomeRepresentante;
@@ -36,11 +37,11 @@ public class FornecedorDTO {
         this.nome = nome;
     }
 
-    public String getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(String dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
@@ -60,12 +61,12 @@ public class FornecedorDTO {
         this.tipoDocumento = tipoDocumento;
     }
 
-    public Endereco getI_endereco() {
-        return i_endereco;
+    public Endereco getEndereco() {
+        return endereco;
     }
 
-    public void setI_endereco(Endereco i_endereco) {
-        this.i_endereco = i_endereco;
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
     public String getTelefone() {
@@ -116,7 +117,7 @@ public class FornecedorDTO {
         dto.setDataNascimento(fornecedor.getDataNascimento());
         dto.setDocumento(fornecedor.getDocumento());
         dto.setTipoDocumento(fornecedor.getTipoDocumento());
-        dto.setI_endereco(fornecedor.getI_endereco());
+        dto.setEndereco(fornecedor.getEndereco());
         dto.setTelefone(fornecedor.getTelefone());
         dto.setEmail(fornecedor.getEmail());
         dto.setNomeRepresentante(fornecedor.getNomeRepresentante());
@@ -133,7 +134,7 @@ public class FornecedorDTO {
         fornecedor.setDataNascimento(dto.getDataNascimento());
         fornecedor.setDocumento(dto.getDocumento());
         fornecedor.setTipoDocumento(dto.getTipoDocumento());
-        fornecedor.setI_endereco(dto.getI_endereco());
+        fornecedor.setEndereco(dto.getEndereco());
         fornecedor.setTelefone(dto.getTelefone());
         fornecedor.setEmail(dto.getEmail());
         fornecedor.setNomeRepresentante(fornecedor.getNomeRepresentante());
@@ -142,7 +143,6 @@ public class FornecedorDTO {
 
         return fornecedor;
     }
-
 }
 
 

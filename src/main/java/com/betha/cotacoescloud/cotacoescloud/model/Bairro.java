@@ -12,20 +12,20 @@ public class Bairro extends AbstractRegiao {
     @ManyToOne
     @NotNull
     @JoinColumn(name = "I_MUNICIPIO", referencedColumnName = "ID")
-    private Municipio i_municipio;
+    private Municipio municipio;
 
-    public Bairro(String nome, Long populacao, Municipio i_municipio) {
+    public Bairro(String nome, Long populacao, Municipio municipio) {
         super(nome, populacao);
-        this.i_municipio = i_municipio;
+        this.municipio = municipio;
     }
 
     public Bairro(){}
 
-    public Municipio getI_municipio() {
-        return i_municipio;
+    public Municipio getMunicipio() {
+        return municipio;
     }
 
-    public void setI_municipio(Municipio i_municipio) {
-        this.i_municipio = i_municipio;
+    public void setMunicipio(Municipio municipio) {
+        this.municipio = municipio;
     }
 }

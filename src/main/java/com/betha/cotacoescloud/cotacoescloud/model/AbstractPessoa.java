@@ -5,7 +5,6 @@ import com.betha.cotacoescloud.cotacoescloud.enterprise.AbstractEntity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.Date;
 
 @MappedSuperclass
 public abstract class AbstractPessoa extends AbstractEntity {
@@ -22,18 +21,18 @@ public abstract class AbstractPessoa extends AbstractEntity {
     private TipoDocumento tipoDocumento;
     @ManyToOne
     @JoinColumn(name = "I_ENDERECO", referencedColumnName = "ID")
-    private Endereco i_endereco;
+    private Endereco endereco;
     @Column(name = "TELEFONE")
     private String telefone;
     @Column(name = "EMAIL")
     private String email;
 
-    public AbstractPessoa(String nome, String dataNascimento, String documento, TipoDocumento tipoDocumento, Endereco i_endereco, String telefone, String email) {
+    public AbstractPessoa(String nome, LocalDate dataNascimento, String documento, TipoDocumento tipoDocumento, Endereco endereco, String telefone, String email) {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.documento = documento;
         this.tipoDocumento = tipoDocumento;
-        this.i_endereco = i_endereco;
+        this.endereco = endereco;
         this.telefone = telefone;
         this.email = email;
     }
@@ -48,11 +47,11 @@ public abstract class AbstractPessoa extends AbstractEntity {
         this.nome = nome;
     }
 
-    public String getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(String dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
@@ -72,12 +71,12 @@ public abstract class AbstractPessoa extends AbstractEntity {
         this.tipoDocumento = tipoDocumento;
     }
 
-    public Endereco getI_endereco() {
-        return i_endereco;
+    public Endereco getEndereco() {
+        return endereco;
     }
 
-    public void setI_endereco(Endereco i_endereco) {
-        this.i_endereco = i_endereco;
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
     public String getTelefone() {
@@ -94,18 +93,5 @@ public abstract class AbstractPessoa extends AbstractEntity {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    @Override
-    public String toString() {
-        return "AbstractPessoa{" +
-                "nome='" + nome + '\'' +
-                ", dataNascimento=" + dataNascimento +
-                ", documento='" + documento + '\'' +
-                ", tipoDocumento='" + tipoDocumento + '\'' +
-                ", i_endereco=" + i_endereco +
-                ", telefone='" + telefone + '\'' +
-                ", email='" + email + '\'' +
-                "} " + super.toString();
     }
 }
