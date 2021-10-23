@@ -3,6 +3,7 @@ package com.betha.cotacoescloud.cotacoescloud.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -14,7 +15,7 @@ public class Funcionario extends AbstractPessoa{
     @Column(name = "ATIVO")
     private Boolean ativo;
 
-    public Funcionario(String nome, String dataNascimento, String documento, TipoDocumento tipoDocumento, Endereco i_endereco, String telefone, String email, String cargo, Boolean ativo) {
+    public Funcionario(String nome, LocalDate dataNascimento, String documento, TipoDocumento tipoDocumento, Endereco i_endereco, String telefone, String email, String cargo, Boolean ativo) {
         super(nome, dataNascimento, documento, tipoDocumento, i_endereco, telefone, email);
         this.cargo = cargo;
         this.ativo = ativo;

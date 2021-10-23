@@ -2,7 +2,9 @@ package com.betha.cotacoescloud.cotacoescloud.resource;
 
 import com.betha.cotacoescloud.cotacoescloud.model.Municipio;
 import com.betha.cotacoescloud.cotacoescloud.repository.MunicipioRepository;
+import com.querydsl.core.types.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,8 +26,11 @@ public class MunicipioController {
     private MunicipioRepository repository;
 
     @GetMapping
-    public List<MunicipioDTO> getMunicipios() {
-        return repository.findAll().stream().map(m-> MunicipioDTO.toDTO(m)).collect(Collectors.toList());
+    public List<MunicipioDTO> getMunicipios(@QuerydslPredicate(root = Municipio.class) Predicate predicate) {
+        List<MunicipioDTO> result = new ArrayList<>();
+        Iterable<Municipio> all = repository.findAll(predicate);
+        all.forEach(f -> result.add(MunicipioDTO.toDTO(f)));
+        return result;
     }
 
     @GetMapping("/{id}")

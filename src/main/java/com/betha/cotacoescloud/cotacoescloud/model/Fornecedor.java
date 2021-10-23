@@ -3,6 +3,7 @@ package com.betha.cotacoescloud.cotacoescloud.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 
 @Entity
@@ -17,7 +18,7 @@ public class Fornecedor extends AbstractPessoa{
     private String naturezaJuridica;
 
 
-    public Fornecedor(String nome, String dataNascimento, String documento, TipoDocumento tipoDocumento, Endereco i_endereco, String telefone, String email, String nomeRepresentante, Porte porte, String naturezaJuridica) {
+    public Fornecedor(String nome, LocalDate dataNascimento, String documento, TipoDocumento tipoDocumento, Endereco i_endereco, String telefone, String email, String nomeRepresentante, Porte porte, String naturezaJuridica) {
         super(nome, dataNascimento, documento, tipoDocumento, i_endereco, telefone, email);
         this.nomeRepresentante = nomeRepresentante;
         this.porte = porte;
