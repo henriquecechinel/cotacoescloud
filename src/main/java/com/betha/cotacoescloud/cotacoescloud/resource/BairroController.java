@@ -3,21 +3,16 @@ package com.betha.cotacoescloud.cotacoescloud.resource;
 import com.betha.cotacoescloud.cotacoescloud.model.Bairro;
 import com.betha.cotacoescloud.cotacoescloud.repository.BairroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/bairros")
-public class BairroController {
+public class BairroController extends AbstractResource {
 
     @Autowired
     private BairroRepository repository;

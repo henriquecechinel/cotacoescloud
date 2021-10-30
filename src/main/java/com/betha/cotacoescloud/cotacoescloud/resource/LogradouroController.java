@@ -3,21 +3,16 @@ package com.betha.cotacoescloud.cotacoescloud.resource;
 import com.betha.cotacoescloud.cotacoescloud.model.Logradouro;
 import com.betha.cotacoescloud.cotacoescloud.repository.LogradouroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/logradouros")
-public class LogradouroController {
+public class LogradouroController extends AbstractResource {
 
     @Autowired
     private LogradouroRepository repository;
@@ -60,18 +55,4 @@ public class LogradouroController {
 
         return LogradouroDTO.toDTO(repository.save(logradouroFind));
     }
-
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public Map<String, String> handleValidationExceptions(
-            MethodArgumentNotValidException ex) {
-        Map<String, String> errors = new HashMap<>();
-        ex.getBindingResult().getAllErrors().forEach((error) -> {
-            String fieldName = ((FieldError) error).getField();
-            String errorMessage = error.getDefaultMessage();
-            errors.put(fieldName, errorMessage);
-        });
-        return errors;
-    }
-
 }

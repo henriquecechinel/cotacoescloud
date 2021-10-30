@@ -3,9 +3,6 @@ package com.betha.cotacoescloud.cotacoescloud.resource;
 import com.betha.cotacoescloud.cotacoescloud.model.Funcionario;
 import com.betha.cotacoescloud.cotacoescloud.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
@@ -13,16 +10,12 @@ import javax.validation.Valid;
 import com.betha.cotacoescloud.cotacoescloud.enterprise.ValidationException;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/funcionarios")
-public class FuncionarioController extends AbstractResource{
+public class FuncionarioController extends AbstractResource {
 
     @Autowired
     private FuncionarioRepository repository;
@@ -77,18 +70,5 @@ public class FuncionarioController extends AbstractResource{
         funcionarioFind.setCargo(funcionario.getCargo());
 
         return FuncionarioDTO.toDTO(repository.save(funcionarioFind));
-    }
-
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public Map<String, String> handleValidationExceptions(
-            MethodArgumentNotValidException ex) {
-        Map<String, String> errors = new HashMap<>();
-        ex.getBindingResult().getAllErrors().forEach((error) -> {
-            String fieldName = ((FieldError) error).getField();
-            String errorMessage = error.getDefaultMessage();
-            errors.put(fieldName, errorMessage);
-        });
-        return errors;
     }
 }

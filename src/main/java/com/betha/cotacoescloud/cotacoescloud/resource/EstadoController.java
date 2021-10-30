@@ -5,22 +5,17 @@ import com.betha.cotacoescloud.cotacoescloud.model.Pais;
 import com.betha.cotacoescloud.cotacoescloud.repository.EstadoRepository;
 import com.betha.cotacoescloud.cotacoescloud.repository.PaisRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/estados")
-public class EstadoController {
+public class EstadoController extends AbstractResource {
 
     @Autowired
     private EstadoRepository repository;
