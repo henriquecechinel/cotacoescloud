@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
-public class ItensLicitacao {
+public class ItemLicitacao {
     @GeneratedValue
     @Column(name = "NUMERO_ITEM")
     private Long numeroItem;
@@ -22,7 +22,7 @@ public class ItensLicitacao {
     @JoinColumn(name = "I_MATERIAL", referencedColumnName = "ID")
     private Material material;
 
-    public ItensLicitacao(Long numeroItem, Long quantidade, BigDecimal valorUnitario, BigDecimal valorTotal, Material material) {
+    public ItemLicitacao(Long numeroItem, Long quantidade, BigDecimal valorUnitario, BigDecimal valorTotal, Material material) {
         this.numeroItem = numeroItem;
         this.quantidade = quantidade;
         this.valorUnitario = valorUnitario;
@@ -30,7 +30,7 @@ public class ItensLicitacao {
         this.material = material;
     }
 
-    public ItensLicitacao (){}
+    public ItemLicitacao(){}
 
     public Long getNumeroItem() {
         return numeroItem;
