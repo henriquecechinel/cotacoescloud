@@ -1,12 +1,13 @@
 package com.betha.cotacoescloud.cotacoescloud.model;
 
-public class Material {
+import com.betha.cotacoescloud.cotacoescloud.enterprise.AbstractEntity;
+
+public class Material extends AbstractEntity {
 
     private Long codigo;
     private String descricao;
     private UnidadeMedida unidadeMedida;
     private Tipo tipo;
-
 
     public Material(Long codigo, String descricao, UnidadeMedida unidadeMedida, Tipo tipo) {
         this.codigo = codigo;
@@ -15,6 +16,7 @@ public class Material {
         this.tipo = tipo;
     }
 
+    public Material() {}
 
     public Long getCodigo() {
         return codigo;
