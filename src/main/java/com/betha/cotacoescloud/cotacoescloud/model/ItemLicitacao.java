@@ -1,11 +1,13 @@
 package com.betha.cotacoescloud.cotacoescloud.model;
 
+import com.betha.cotacoescloud.cotacoescloud.enterprise.AbstractEntity;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
-public class ItemLicitacao {
+public class ItemLicitacao extends AbstractEntity {
     @GeneratedValue
     @Column(name = "NUMERO_ITEM")
     private Long numeroItem;
