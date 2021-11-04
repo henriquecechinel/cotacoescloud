@@ -17,7 +17,7 @@ public interface MaterialRepository extends JpaRepository<Material, Long>, Query
 
     List<Material> findByUnidadeMedida(String unidadeMedida);
 
-    List<Material> findByTipo(String tipo);
+    List<Material> findByTipo(String valorTotal);
 
 }
 
