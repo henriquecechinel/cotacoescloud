@@ -9,8 +9,8 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 public class Municipio extends AbstractRegiao {
+    @NotNull(message = "O campo Estado é obrigatório!")
     @ManyToOne
-    @NotNull
     @JoinColumn(name = "I_ESTADO", referencedColumnName = "ID")
     private Estado estado;
 
