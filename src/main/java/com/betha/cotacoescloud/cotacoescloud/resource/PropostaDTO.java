@@ -8,8 +8,7 @@ import java.time.LocalDate;
 public class PropostaDTO {
 
     private Long id;
-    private ItemLicitacao numeroItem;
-    private ItemLicitacao descricaoMaterial;
+    private ItemLicitacao itemLicitacao;
     private String marca;
     private Long quantidade;
     private BigDecimal valorUnitario;
@@ -27,20 +26,12 @@ public class PropostaDTO {
         this.id = id;
     }
 
-    public ItemLicitacao getNumeroItem() {
-        return numeroItem;
+    public ItemLicitacao getItemLicitacao() {
+        return itemLicitacao;
     }
 
-    public void setNumeroItem(ItemLicitacao numeroItem) {
-        this.numeroItem = numeroItem;
-    }
-
-    public ItemLicitacao getDescricaoMaterial() {
-        return descricaoMaterial;
-    }
-
-    public void setDescricaoMaterial(ItemLicitacao descricaoMaterial) {
-        this.descricaoMaterial = descricaoMaterial;
+    public void setItemLicitacao(ItemLicitacao itemLicitacao) {
+        this.itemLicitacao = itemLicitacao;
     }
 
     public String getMarca() {
@@ -110,8 +101,7 @@ public class PropostaDTO {
     public static PropostaDTO toDTO(Proposta proposta){
         PropostaDTO dto = new PropostaDTO();
         dto.setId(proposta.getId());
-        dto.setNumeroItem(proposta.getNumeroItem());
-        dto.setDescricaoMaterial(proposta.getDescricaoMaterial());
+        dto.setItemLicitacao(proposta.getItemLicitacao());
         dto.setMarca(proposta.getMarca());
         dto.setQuantidade(proposta.getQuantidade());
         dto.setValorUnitario(proposta.getValorUnitario());
@@ -127,8 +117,7 @@ public class PropostaDTO {
     public static Proposta fromDTO(PropostaDTO dto){
         Proposta entity = new Proposta();
         entity.setId(dto.getId());
-        entity.setNumeroItem(dto.getNumeroItem());
-        entity.setDescricaoMaterial(dto.getDescricaoMaterial());
+        entity.setItemLicitacao(dto.getItemLicitacao());
         entity.setMarca(dto.getMarca());
         entity.setQuantidade(dto.getQuantidade());
         entity.setValorUnitario(dto.getValorUnitario());

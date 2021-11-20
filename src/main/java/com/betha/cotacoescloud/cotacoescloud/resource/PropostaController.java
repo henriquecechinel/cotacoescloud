@@ -56,8 +56,7 @@ public class PropostaController extends AbstractResource {
         Proposta propostaFind = repository.findById(propostaId)
                 .orElseThrow(() -> new EntityNotFoundException("Proposta não encontrado com ID: " + propostaId));
         propostaFind.setId(propostaId);
-        propostaFind.setNumeroItem(proposta.getNumeroItem());
-        propostaFind.setDescricaoMaterial(proposta.getDescricaoMaterial());
+        propostaFind.setItemLicitacao(proposta.getItemLicitacao());
         propostaFind.setMarca(proposta.getMarca());
         propostaFind.setQuantidade(proposta.getQuantidade());
         propostaFind.setValorUnitario(proposta.getValorUnitario());

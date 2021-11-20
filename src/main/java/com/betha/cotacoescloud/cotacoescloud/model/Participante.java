@@ -2,25 +2,40 @@ package com.betha.cotacoescloud.cotacoescloud.model;
 
 import com.betha.cotacoescloud.cotacoescloud.enterprise.AbstractEntity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
+@Entity
 public class Participante extends AbstractEntity {
-    private Fornecedor nomeFornecedor;
-    private Fornecedor cpfCnpjFornecedor;
-    private Fornecedor emailFornecedor;
-    private Fornecedor telefoneFornecedor;
+    @NotNull(message = "O campo Fornecedor é obrigatório!")
+    @ManyToOne
+    @JoinColumn(name = "I_FORNECEDOR", referencedColumnName = "ID")
+    private Fornecedor fornecedor;
+
+    @Column(name = "DATA_CREDENCIAMENTO")
     private LocalDate dataCredenciamento;
+
+    @Column(name = "MPE")
     private Boolean mpe;
+
+    @Column(name = "NOME_REPRESENTANTE")
     private String nomeRepresentante;
+
+    @Column(name = "CPF_REPRESENTANTE")
     private String cpfRepresentante;
+
+    @Column(name = "SEDE_MPE")
     private SedeMPE sedeMPE;
+
+    @Column(name = "SITUACAO_DOCUMENTO")
     private SituacaoDocumentacao situacaoDocumentacao;
 
-    public Participante(Fornecedor nomeFornecedor, Fornecedor cpfCnpjFornecedor, Fornecedor emailFornecedor, Fornecedor telefoneFornecedor, LocalDate dataCredenciamento, Boolean mpe, String nomeRepresentante, String cpfRepresentante, SedeMPE sedeMPE, SituacaoDocumentacao situacaoDocumentacao) {
-        this.nomeFornecedor = nomeFornecedor;
-        this.cpfCnpjFornecedor = cpfCnpjFornecedor;
-        this.emailFornecedor = emailFornecedor;
-        this.telefoneFornecedor = telefoneFornecedor;
+    public Participante(Fornecedor fornecedor, LocalDate dataCredenciamento, Boolean mpe, String nomeRepresentante, String cpfRepresentante, SedeMPE sedeMPE, SituacaoDocumentacao situacaoDocumentacao) {
+        this.fornecedor = fornecedor;
         this.dataCredenciamento = dataCredenciamento;
         this.mpe = mpe;
         this.nomeRepresentante = nomeRepresentante;
@@ -31,36 +46,12 @@ public class Participante extends AbstractEntity {
 
     public Participante() {}
 
-    public Fornecedor getNomeFornecedor() {
-        return nomeFornecedor;
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
     }
 
-    public void setNomeFornecedor(Fornecedor nomeFornecedor) {
-        this.nomeFornecedor = nomeFornecedor;
-    }
-
-    public Fornecedor getCpfCnpjFornecedor() {
-        return cpfCnpjFornecedor;
-    }
-
-    public void setCpfCnpjFornecedor(Fornecedor cpfCnpjFornecedor) {
-        this.cpfCnpjFornecedor = cpfCnpjFornecedor;
-    }
-
-    public Fornecedor getEmailFornecedor() {
-        return emailFornecedor;
-    }
-
-    public void setEmailFornecedor(Fornecedor emailFornecedor) {
-        this.emailFornecedor = emailFornecedor;
-    }
-
-    public Fornecedor getTelefoneFornecedor() {
-        return telefoneFornecedor;
-    }
-
-    public void setTelefoneFornecedor(Fornecedor telefoneFornecedor) {
-        this.telefoneFornecedor = telefoneFornecedor;
+    public Fornecedor getFornecedor() {
+        return fornecedor;
     }
 
     public LocalDate getDataCredenciamento() {

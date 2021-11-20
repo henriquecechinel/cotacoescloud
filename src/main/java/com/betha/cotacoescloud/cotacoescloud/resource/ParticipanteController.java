@@ -56,10 +56,7 @@ public class ParticipanteController extends AbstractResource {
         Participante participanteFind = repository.findById(participanteId)
                 .orElseThrow(() -> new EntityNotFoundException("Participante não encontrado com ID: " + participanteId));
         participanteFind.setId(participanteId);
-        participanteFind.setNomeFornecedor(participante.getNomeFornecedor());
-        participanteFind.setCpfCnpjFornecedor(participante.getCpfCnpjFornecedor());
-        participanteFind.setEmailFornecedor(participante.getEmailFornecedor());
-        participanteFind.setTelefoneFornecedor(participante.getTelefoneFornecedor());
+        participanteFind.setFornecedor(participante.getFornecedor());
         participanteFind.setDataCredenciamento(participante.getDataCredenciamento());
         participanteFind.setMpe(participante.getMpe());
         participanteFind.setNomeRepresentante(participante.getNomeRepresentante());

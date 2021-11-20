@@ -10,10 +10,7 @@ import java.time.LocalDate;
 public class ParticipanteDTO {
 
     private Long id;
-    private Fornecedor nomeFornecedor;
-    private Fornecedor cpfCnpjFornecedor;
-    private Fornecedor emailFornecedor;
-    private Fornecedor telefoneFornecedor;
+    private Fornecedor fornecedor;
     private LocalDate dataCredenciamento;
     private Boolean mpe;
     private String nomeRepresentante;
@@ -29,36 +26,12 @@ public class ParticipanteDTO {
         this.id = id;
     }
 
-    public Fornecedor getNomeFornecedor() {
-        return nomeFornecedor;
+    public Fornecedor getFornecedor() {
+        return fornecedor;
     }
 
-    public void setNomeFornecedor(Fornecedor nomeFornecedor) {
-        this.nomeFornecedor = nomeFornecedor;
-    }
-
-    public Fornecedor getCpfCnpjFornecedor() {
-        return cpfCnpjFornecedor;
-    }
-
-    public void setCpfCnpjFornecedor(Fornecedor cpfCnpjFornecedor) {
-        this.cpfCnpjFornecedor = cpfCnpjFornecedor;
-    }
-
-    public Fornecedor getEmailFornecedor() {
-        return emailFornecedor;
-    }
-
-    public void setEmailFornecedor(Fornecedor emailFornecedor) {
-        this.emailFornecedor = emailFornecedor;
-    }
-
-    public Fornecedor getTelefoneFornecedor() {
-        return telefoneFornecedor;
-    }
-
-    public void setTelefoneFornecedor(Fornecedor telefoneFornecedor) {
-        this.telefoneFornecedor = telefoneFornecedor;
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
     }
 
     public LocalDate getDataCredenciamento() {
@@ -112,10 +85,7 @@ public class ParticipanteDTO {
     public static ParticipanteDTO toDTO(Participante participante){
         ParticipanteDTO dto = new ParticipanteDTO();
         dto.setId(participante.getId());
-        dto.setNomeFornecedor(participante.getNomeFornecedor());
-        dto.setCpfCnpjFornecedor(participante.getCpfCnpjFornecedor());
-        dto.setEmailFornecedor(participante.getEmailFornecedor());
-        dto.setTelefoneFornecedor(participante.getTelefoneFornecedor());
+        dto.setFornecedor(participante.getFornecedor());
         dto.setDataCredenciamento(participante.getDataCredenciamento());
         dto.setMpe(participante.getMpe());
         dto.setNomeRepresentante(participante.getNomeRepresentante());
@@ -129,10 +99,7 @@ public class ParticipanteDTO {
     public static Participante fromDTO(ParticipanteDTO dto){
         Participante entity = new Participante();
         entity.setId(dto.getId());
-        entity.setNomeFornecedor(dto.getNomeFornecedor());
-        entity.setCpfCnpjFornecedor(dto.getCpfCnpjFornecedor());
-        entity.setEmailFornecedor(dto.getEmailFornecedor());
-        entity.setTelefoneFornecedor(dto.getTelefoneFornecedor());
+        entity.setFornecedor(dto.getFornecedor());
         entity.setDataCredenciamento(dto.getDataCredenciamento());
         entity.setMpe(dto.getMpe());
         entity.setNomeRepresentante(dto.getNomeRepresentante());
