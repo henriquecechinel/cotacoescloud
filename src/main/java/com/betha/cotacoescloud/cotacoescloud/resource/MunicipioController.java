@@ -5,6 +5,7 @@ import com.betha.cotacoescloud.cotacoescloud.repository.MunicipioRepository;
 import com.querydsl.core.types.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
@@ -61,4 +62,15 @@ public class MunicipioController extends AbstractResource {
 
         return MunicipioDTO.toDTO(repository.save(municipioFind));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable(value = "id") Long municipioId) throws EntityNotFoundException {
+        Municipio municipioFind = repository.findById(municipioId)
+                .orElseThrow(() -> new EntityNotFoundException("Município não encontrado com ID: " + municipioId));
+
+        repository.delete(municipioFind);
+
+        return ResponseEntity.noContent().build();
+    }
+
 }
