@@ -42,14 +42,12 @@ public class ProcessoLicitatorio extends AbstractEntity {
     @Column(name = "RESPONSAVEL_LICITACAO")
     private String responsavelLicitacao;
 
-    @NotNull(message = "O campo Itens da Licitação é obrigatório!")
     @ManyToMany(cascade = {CascadeType.REFRESH})
     @JoinTable(
             name = "PROCESSO_LICITATORIO_ITENS_LICITACAO",
             joinColumns = {@JoinColumn(name = "PROCESSO_LICITATORIO_ID")},
             inverseJoinColumns = {@JoinColumn(name = "ITEM_LICITACAO_ID")}
     )
-    @Column(name = "LISTA_I_ITEM_LICITACAO")
     private List<ItemLicitacao> itensLicitacao;
 
     @NotNull(message = "O campo Sessão de Julgamento é obrigatório!")
