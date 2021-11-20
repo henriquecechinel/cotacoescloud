@@ -17,11 +17,6 @@ public class Proposta extends AbstractEntity {
     @JoinColumn(name = "I_ITEM_LICITACAO", referencedColumnName = "ID")
     private ItemLicitacao itemLicitacao;
 
-    @NotNull(message = "O campo Participante é obrigatório!")
-    @ManyToOne
-    @JoinColumn(name = "I_PARTICIPANTE", referencedColumnName = "ID")
-    private Participante participante;
-
     @Column(name = "MARCA")
     private String marca;
 
@@ -46,9 +41,8 @@ public class Proposta extends AbstractEntity {
     @Column(name = "PRAZO_PREENCHIMENTO")
     private LocalDate prazoPreenchimento;
 
-    public Proposta(ItemLicitacao itemLicitacao, Participante participante, String marca, Long quantidade, BigDecimal valorUnitario, BigDecimal valorTotal, SituacaoProposta situacao, Long ordemClassificacao, LocalDate dataValidadeProposta, LocalDate prazoPreenchimento) {
+    public Proposta(ItemLicitacao itemLicitacao, String marca, Long quantidade, BigDecimal valorUnitario, BigDecimal valorTotal, SituacaoProposta situacao, Long ordemClassificacao, LocalDate dataValidadeProposta, LocalDate prazoPreenchimento) {
         this.itemLicitacao = itemLicitacao;
-        this.participante = participante;
         this.marca = marca;
         this.quantidade = quantidade;
         this.valorUnitario = valorUnitario;
@@ -67,14 +61,6 @@ public class Proposta extends AbstractEntity {
 
     public void setItemLicitacao(ItemLicitacao itemLicitacao) {
         this.itemLicitacao = itemLicitacao;
-    }
-
-    public Participante getParticipante() {
-        return participante;
-    }
-
-    public void setParticipante(Participante participante) {
-        this.participante = participante;
     }
 
     public String getMarca() {
