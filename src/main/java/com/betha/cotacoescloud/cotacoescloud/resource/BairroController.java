@@ -3,6 +3,7 @@ package com.betha.cotacoescloud.cotacoescloud.resource;
 import com.betha.cotacoescloud.cotacoescloud.model.Bairro;
 import com.betha.cotacoescloud.cotacoescloud.repository.BairroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
@@ -54,5 +55,15 @@ public class BairroController extends AbstractResource {
         bairroFind.setPopulacao(bairro.getPopulacao());
 
         return BairroDTO.toDTO(repository.save(bairroFind));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable(value = "id") Long bairroId) throws EntityNotFoundException {
+        Bairro bairroFind = repository.findById(bairroId)
+                .orElseThrow(() -> new EntityNotFoundException("Bairro não encontrado com ID: " + bairroId));
+
+        repository.delete(bairroFind);
+
+        return ResponseEntity.noContent().build();
     }
 }

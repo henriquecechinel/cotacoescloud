@@ -3,6 +3,7 @@ package com.betha.cotacoescloud.cotacoescloud.resource;
 import com.betha.cotacoescloud.cotacoescloud.model.Logradouro;
 import com.betha.cotacoescloud.cotacoescloud.repository.LogradouroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
@@ -54,5 +55,15 @@ public class LogradouroController extends AbstractResource {
         logradouroFind.setPopulacao(logradouro.getPopulacao());
 
         return LogradouroDTO.toDTO(repository.save(logradouroFind));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable(value = "id") Long logradouroId) throws EntityNotFoundException {
+        Logradouro logradouroFind = repository.findById(logradouroId)
+                .orElseThrow(() -> new EntityNotFoundException("Logradouro não encontrado com ID: " + logradouroId));
+
+        repository.delete(logradouroFind);
+
+        return ResponseEntity.noContent().build();
     }
 }

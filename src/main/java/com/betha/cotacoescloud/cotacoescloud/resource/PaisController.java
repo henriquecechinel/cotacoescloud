@@ -3,6 +3,7 @@ package com.betha.cotacoescloud.cotacoescloud.resource;
 import com.betha.cotacoescloud.cotacoescloud.model.Pais;
 import com.betha.cotacoescloud.cotacoescloud.repository.PaisRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
@@ -54,5 +55,15 @@ public class PaisController extends AbstractResource {
         paisFind.setPopulacao(pais.getPopulacao());
 
         return PaisDTO.toDTO(repository.save(paisFind));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable(value = "id") Long paisId) throws EntityNotFoundException {
+        Pais paisFind = repository.findById(paisId)
+                .orElseThrow(() -> new EntityNotFoundException("País não encontrado com ID: " + paisId));
+
+        repository.delete(paisFind);
+
+        return ResponseEntity.noContent().build();
     }
 }

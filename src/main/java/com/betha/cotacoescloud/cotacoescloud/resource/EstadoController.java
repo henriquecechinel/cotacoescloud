@@ -5,6 +5,7 @@ import com.betha.cotacoescloud.cotacoescloud.model.Pais;
 import com.betha.cotacoescloud.cotacoescloud.repository.EstadoRepository;
 import com.betha.cotacoescloud.cotacoescloud.repository.PaisRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
@@ -67,5 +68,15 @@ public class EstadoController extends AbstractResource {
         estadoFind.setPopulacao(estado.getPopulacao());
 
         return EstadoDTO.toDTO(repository.save(estadoFind));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable(value = "id") Long estadoId) throws EntityNotFoundException {
+        Estado estadoFind = repository.findById(estadoId)
+                .orElseThrow(() -> new EntityNotFoundException("Estado não encontrado com ID: " + estadoId));
+
+        repository.delete(estadoFind);
+
+        return ResponseEntity.noContent().build();
     }
 }
