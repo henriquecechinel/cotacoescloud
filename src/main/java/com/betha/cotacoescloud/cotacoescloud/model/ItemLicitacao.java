@@ -8,7 +8,6 @@ import java.math.BigDecimal;
 
 @Entity
 public class ItemLicitacao extends AbstractEntity {
-    @GeneratedValue
     @Column(name = "NUMERO_ITEM")
     private Long numeroItem;
     @NotNull(message = "O campo Quantidade é obrigatório!")
