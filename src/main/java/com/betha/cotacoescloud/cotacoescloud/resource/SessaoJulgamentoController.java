@@ -61,7 +61,7 @@ public class SessaoJulgamentoController extends AbstractResource {
         sessaoJulgamentoFind.setDataFimCredenciamento(sessaoJulgamento.getDataFimCredenciamento());
         sessaoJulgamentoFind.setDataInicioAbertura(sessaoJulgamento.getDataInicioAbertura());
         sessaoJulgamentoFind.setDataFimAbertura(sessaoJulgamento.getDataFimAbertura());
-        sessaoJulgamentoFind.setPropostas(sessaoJulgamento.getPropostas());
+        sessaoJulgamentoFind.setParticipantes(sessaoJulgamento.getParticipantes());
 
         return SessaoJulgamentoDTO.toDTO(repository.save(sessaoJulgamentoFind));
     }

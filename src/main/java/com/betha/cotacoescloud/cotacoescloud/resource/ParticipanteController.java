@@ -63,6 +63,7 @@ public class ParticipanteController extends AbstractResource {
         participanteFind.setCpfRepresentante(participante.getCpfRepresentante());
         participanteFind.setSedeMPE(participante.getSedeMPE());
         participanteFind.setSituacaoDocumentacao(participante.getSituacaoDocumentacao());
+        participanteFind.setPropostas(participante.getPropostas());
 
         return ParticipanteDTO.toDTO(repository.save(participanteFind));
     }

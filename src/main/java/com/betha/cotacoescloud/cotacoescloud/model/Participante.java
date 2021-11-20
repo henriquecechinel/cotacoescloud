@@ -2,12 +2,10 @@ package com.betha.cotacoescloud.cotacoescloud.model;
 
 import com.betha.cotacoescloud.cotacoescloud.enterprise.AbstractEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Participante extends AbstractEntity {
@@ -34,7 +32,16 @@ public class Participante extends AbstractEntity {
     @Column(name = "SITUACAO_DOCUMENTO")
     private SituacaoDocumentacao situacaoDocumentacao;
 
-    public Participante(Fornecedor fornecedor, LocalDate dataCredenciamento, Boolean mpe, String nomeRepresentante, String cpfRepresentante, SedeMPE sedeMPE, SituacaoDocumentacao situacaoDocumentacao) {
+    @ManyToMany(cascade = {CascadeType.REFRESH})
+    @JoinTable(
+            name = "PARTICIPANTE_PROPOSTA",
+            joinColumns = {@JoinColumn(name = "PARTICIPANTE_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "PROPOSTA_ID")}
+    )
+    @Column(name = "LISTA_I_PROPOSTA")
+    private List<Proposta> propostas;
+
+    public Participante(Fornecedor fornecedor, LocalDate dataCredenciamento, Boolean mpe, String nomeRepresentante, String cpfRepresentante, SedeMPE sedeMPE, SituacaoDocumentacao situacaoDocumentacao, List<Proposta> propostas) {
         this.fornecedor = fornecedor;
         this.dataCredenciamento = dataCredenciamento;
         this.mpe = mpe;
@@ -42,6 +49,7 @@ public class Participante extends AbstractEntity {
         this.cpfRepresentante = cpfRepresentante;
         this.sedeMPE = sedeMPE;
         this.situacaoDocumentacao = situacaoDocumentacao;
+        this.propostas = propostas;
     }
 
     public Participante() {}
@@ -100,5 +108,13 @@ public class Participante extends AbstractEntity {
 
     public void setSituacaoDocumentacao(SituacaoDocumentacao situacaoDocumentacao) {
         this.situacaoDocumentacao = situacaoDocumentacao;
+    }
+
+    public List<Proposta> getPropostas() {
+        return propostas;
+    }
+
+    public void setPropostas(List<Proposta> propostas) {
+        this.propostas = propostas;
     }
 }

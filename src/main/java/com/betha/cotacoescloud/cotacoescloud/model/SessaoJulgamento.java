@@ -25,20 +25,20 @@ public class SessaoJulgamento extends AbstractEntity {
 
     @ManyToMany(cascade = {CascadeType.REFRESH})
     @JoinTable(
-            name = "SESSAO_JULGAMENTO_PROPOSTAS",
+            name = "SESSAO_JULGAMENTO_PARTICIPANTES",
             joinColumns = {@JoinColumn(name = "SESSAO_JULGAMENTO_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "PROPOSTA_ID")}
+            inverseJoinColumns = {@JoinColumn(name = "PARTICIPANTE_ID")}
     )
-    @Column(name = "LISTA_I_PROPOSTA")
-    private List<Proposta> propostas;
+    @Column(name = "LISTA_I_PARTICIPANTE")
+    private List<Participante> participantes;
 
-    public SessaoJulgamento(String tipoSessao, LocalDate dataInicioCredenciamento, LocalDate dataFimCredenciamento, LocalDate dataInicioAbertura, LocalDate dataFimAbertura, List<Proposta> propostas) {
+    public SessaoJulgamento(String tipoSessao, LocalDate dataInicioCredenciamento, LocalDate dataFimCredenciamento, LocalDate dataInicioAbertura, LocalDate dataFimAbertura, List<Participante> participantes) {
         this.tipoSessao = tipoSessao;
         this.dataInicioCredenciamento = dataInicioCredenciamento;
         this.dataFimCredenciamento = dataFimCredenciamento;
         this.dataInicioAbertura = dataInicioAbertura;
         this.dataFimAbertura = dataFimAbertura;
-        this.propostas = propostas;
+        this.participantes = participantes;
     }
 
     public SessaoJulgamento() {};
@@ -83,11 +83,11 @@ public class SessaoJulgamento extends AbstractEntity {
         this.dataFimAbertura = dataFimAbertura;
     }
 
-    public List<Proposta> getPropostas() {
-        return propostas;
+    public List<Participante> getParticipantes() {
+        return participantes;
     }
 
-    public void setPropostas(List<Proposta> propostas) {
-        this.propostas = propostas;
+    public void setParticipantes(List<Participante> participantes) {
+        this.participantes = participantes;
     }
 }

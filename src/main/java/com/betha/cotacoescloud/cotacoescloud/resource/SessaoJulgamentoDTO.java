@@ -13,7 +13,7 @@ public class SessaoJulgamentoDTO {
     private LocalDate dataFimCredenciamento;
     private LocalDate dataInicioAbertura;
     private LocalDate dataFimAbertura;
-    private List<Proposta> propostas;
+    private List<Participante> participantes;
 
     public Long getId() {
         return id;
@@ -63,12 +63,12 @@ public class SessaoJulgamentoDTO {
         this.dataFimAbertura = dataFimAbertura;
     }
 
-    public List<Proposta> getPropostas() {
-        return propostas;
+    public List<Participante> getParticipantes() {
+        return participantes;
     }
 
-    public void setPropostas(List<Proposta> propostas) {
-        this.propostas = propostas;
+    public void setParticipantes(List<Participante> participantes) {
+        this.participantes = participantes;
     }
 
     public static SessaoJulgamentoDTO toDTO(SessaoJulgamento sessaoJulgamento){
@@ -79,7 +79,7 @@ public class SessaoJulgamentoDTO {
         dto.setDataFimCredenciamento(sessaoJulgamento.getDataFimCredenciamento());
         dto.setDataInicioAbertura(sessaoJulgamento.getDataInicioAbertura());
         dto.setDataFimAbertura(sessaoJulgamento.getDataFimAbertura());
-        dto.setPropostas(sessaoJulgamento.getPropostas());
+        dto.setParticipantes(sessaoJulgamento.getParticipantes());
 
         return dto;
     }
@@ -92,7 +92,7 @@ public class SessaoJulgamentoDTO {
         entity.setDataFimCredenciamento(dto.getDataFimCredenciamento());
         entity.setDataInicioAbertura(dto.getDataInicioAbertura());
         entity.setDataFimAbertura(dto.getDataFimAbertura());
-        entity.setPropostas(dto.getPropostas());
+        entity.setParticipantes(dto.getParticipantes());
 
         return entity;
     }

@@ -1,11 +1,9 @@
 package com.betha.cotacoescloud.cotacoescloud.resource;
 
-import com.betha.cotacoescloud.cotacoescloud.model.Fornecedor;
-import com.betha.cotacoescloud.cotacoescloud.model.Participante;
-import com.betha.cotacoescloud.cotacoescloud.model.SedeMPE;
-import com.betha.cotacoescloud.cotacoescloud.model.SituacaoDocumentacao;
+import com.betha.cotacoescloud.cotacoescloud.model.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class ParticipanteDTO {
 
@@ -17,6 +15,7 @@ public class ParticipanteDTO {
     private String cpfRepresentante;
     private SedeMPE sedeMPE;
     private SituacaoDocumentacao situacaoDocumentacao;
+    private List<Proposta> propostas;
 
     public Long getId() {
         return id;
@@ -82,6 +81,14 @@ public class ParticipanteDTO {
         this.situacaoDocumentacao = situacaoDocumentacao;
     }
 
+    public List<Proposta> getPropostas() {
+        return propostas;
+    }
+
+    public void setPropostas(List<Proposta> propostas) {
+        this.propostas = propostas;
+    }
+
     public static ParticipanteDTO toDTO(Participante participante){
         ParticipanteDTO dto = new ParticipanteDTO();
         dto.setId(participante.getId());
@@ -92,6 +99,7 @@ public class ParticipanteDTO {
         dto.setCpfRepresentante(participante.getCpfRepresentante());
         dto.setSedeMPE(participante.getSedeMPE());
         dto.setSituacaoDocumentacao(participante.getSituacaoDocumentacao());
+        dto.setPropostas(participante.getPropostas());
 
         return dto;
     }
@@ -106,6 +114,7 @@ public class ParticipanteDTO {
         entity.setCpfRepresentante(dto.getCpfRepresentante());
         entity.setSedeMPE(dto.getSedeMPE());
         entity.setSituacaoDocumentacao(dto.getSituacaoDocumentacao());
+        entity.setPropostas(dto.getPropostas());
 
         return entity;
     }
